@@ -20,10 +20,11 @@ npm run dev
 
 ## Run Backend
 
-To run the backend, execute these commands in the terminal
+To run the backend, execute these commands in the terminal:
 
 ```
 cd backend
 
 python api_tsp.py
 ```
+.
