@@ -49,6 +49,7 @@ export default function LocationSearch({ onPlaceSelect, isLoaded }) {
               },
               "& .MuiInputBase-input": {
                 color: "text.primary",
+                color: "text.primary",
               },
             }}
           />

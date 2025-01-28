@@ -31,6 +31,7 @@ export default function Home() {
       <LoadScript
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
         libraries={["places"]}
+        region="MA"
       >
         <CssBaseline />
         <Box

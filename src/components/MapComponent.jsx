@@ -12,9 +12,33 @@ const containerStyle = {
   height: "500px",
 };
 
+const mapStyles = [
+  {
+    featureType: "administrative",
+    elementType: "geometry",
+    stylers: [
+      { visibility: "on" },
+      { color: "#ffcc00" }, // Highlight borders
+    ],
+  },
+  {
+    featureType: "administrative.country",
+    elementType: "geometry",
+    stylers: [
+      { visibility: "on" },
+      { color: "#ffcc00" }, // Make the whole country stand out
+    ],
+  },
+];
+
 const defaultCenter = { lat: 33.5892, lng: -7.6868 };
 
-export default function MapComponent({ isLoaded, locations, directions, onMapClick }) {
+export default function MapComponent({
+  isLoaded,
+  locations,
+  directions,
+  onMapClick,
+}) {
   const [map, setMap] = useState(null);
 
   const onLoad = useCallback((map) => {
@@ -61,7 +85,9 @@ export default function MapComponent({ isLoaded, locations, directions, onMapCli
   return (
     <Box sx={{ height: 550, width: "100%" }}>
       <Typography variant="h6" mb={2}>
-        {directions ? "L'itinéraire des lieux selectionnés" : "Selectionner par carte"}
+        {directions
+          ? "L'itinéraire des lieux selectionnés"
+          : "Selectionner par carte"}
       </Typography>
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -70,6 +96,7 @@ export default function MapComponent({ isLoaded, locations, directions, onMapCli
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={handleMapClick}
+        options={{ styles: mapStyles }}
       >
         {!directions &&
           locations.map((loc, index) => (
