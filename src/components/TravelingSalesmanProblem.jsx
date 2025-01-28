@@ -23,6 +23,7 @@ export default function TravelingSalesmanProblem() {
   const [avoidHighways, setAvoidHighways] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedApi, setSelectedApi] = useState("held-karp");
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5001";
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
@@ -59,10 +60,10 @@ export default function TravelingSalesmanProblem() {
     try {
       const apiUrl =
         selectedApi === "held-karp"
-          ? "http://localhost:5000/solve_tsp"
+          ? backendUrl + "/solve_tsp"
           : selectedApi === "nearest-neighbor"
-          ? "http://localhost:5000/solve_tsp_nn"
-          : "http://localhost:5000/solve_tsp_be";
+          ? backendUrl + "/solve_tsp_nn"
+          : backendUrl + "/solve_tsp_be";
 
       const response = await fetch(apiUrl, {
         method: "POST",
